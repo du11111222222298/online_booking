@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>سامانه رزرو نوبت آنلاین</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container py-5">
+        <h1 class="mb-4 text-center">انتخاب خدمت برای رزرو نوبت</h1>
+        <div class="row">
+            {% for service in services %}
+                <div class="col-md-4 mb-3">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ service.name }}</h5>
+                            <p class="card-text">{{ service.description }}</p>
+                            <p class="text-muted">مدت: {{ service.duration_minutes }} دقیقه | قیمت: {{ service.price }} تومان</p>
+                            <a href="{% url 'slot_list' service.id %}" class="btn btn-primary w-100">مشاهده و رزرو نوبت</a>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <p class="text-center text-muted">هنوز هیچ خدمتی ثبت نشده است. از طریق پنل ادمین خدمات را اضافه کنید.</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
